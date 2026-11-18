@@ -1,9 +1,23 @@
 :root {
   color-scheme: light dark;
-  background: light-dark(#f0f2f1, #191e21);
+  background: light-dark(#f4ead8, #0a1718);
 }
 body {
   margin: 0;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background:
+    radial-gradient(
+      circle at 8% 0,
+      light-dark(#ffd98a, #17403d) 0,
+      transparent 34rem
+    ),
+    radial-gradient(
+      circle at 95% 12%,
+      light-dark(#f9b9a2, #3a2420) 0,
+      transparent 30rem
+    ),
+    light-dark(#f4ead8, #0a1718);
   padding: clamp(10px, 3vw, 44px) clamp(6px, 3vw, 36px);
 }
 body > main {
@@ -25,21 +39,25 @@ body > main {
 
 #campus-stores {
   color-scheme: light dark;
-  --ink: light-dark(#202c35, #ecf0f0);
-  --quiet: light-dark(#526370, #b9c5cb);
-  --paper: light-dark(#fff, #232a30);
-  --desk: light-dark(#f3f5f5, #1d2328);
-  --nav: light-dark(#eaf0f1, #29333b);
-  --sel: light-dark(#233e4c, #c5dce4);
-  --inv: light-dark(#fff, #172b34);
-  --line: light-dark(#d2dcdf, #475158);
-  --memo: light-dark(#fff3d8, #3d3426);
-  --memotxt: light-dark(#65491e, #ead4a5);
-  --mark: light-dark(#bd502f, #f2a585);
-  --ok: light-dark(#e3f1e8, #2d4838);
-  --oktxt: light-dark(#25523d, #bedac8);
-  --badbg: light-dark(#fbe6df, #4c2d25);
-  --badtxt: light-dark(#8a3218, #f7c9b8);
+  --ink: light-dark(#14302e, #f1f6f0);
+  --quiet: light-dark(#4d6461, #a9c0ba);
+  --paper: light-dark(#fffdf8, #142729);
+  --desk: light-dark(#f8f1e4, #0f2022);
+  --nav: light-dark(#e6f1ec, #0e1f21);
+  --sel: light-dark(#0f5c57, #f5b942);
+  --inv: light-dark(#fffdf8, #1c1605);
+  --line: light-dark(#e4d9c6, #2b4547);
+  --memo: light-dark(#ffedc2, #3a2e12);
+  --memotxt: light-dark(#5a3e04, #ffe0a1);
+  --mark: light-dark(#c8401f, #ff9270);
+  --ok: light-dark(#d5f0df, #164332);
+  --oktxt: light-dark(#115236, #a9eac8);
+  --badbg: light-dark(#ffe0d6, #512218);
+  --badtxt: light-dark(#962a11, #ffc8b8);
+  --sun: #f5b942;
+  --hero-text: #fffdf8;
+  --hero-soft: #d9eee7;
+  --shadow: light-dark(rgb(74 52 18 / 0.16), rgb(0 0 0 / 0.42));
   background: var(--paper);
   color: var(--ink);
   font:
@@ -47,7 +65,8 @@ body > main {
     "Arial",
     sans-serif;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 18px;
+  box-shadow: 0 24px 60px -24px var(--shadow);
   overflow: hidden;
   container-type: inline-size;
 }
@@ -68,7 +87,7 @@ body > main {
     600 clamp(24px, 4cqw, 33px)/1.13 "Archivo",
     system-ui,
     sans-serif;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.03em;
 }
 #campus-stores h2 {
   font-size: 20px;
@@ -122,18 +141,24 @@ body > main {
   gap: 10px;
 }
 #campus-stores .mast {
-  padding: 17px 20px;
+  padding: 22px 20px;
   justify-content: space-between;
   flex-wrap: wrap;
+  color: var(--hero-text);
+  background: linear-gradient(115deg, #0b3f3d, #0f5c57 58%, #17695f);
+}
+#campus-stores .mast :is(.muted, small) {
+  color: var(--hero-soft);
 }
 #campus-stores .brandmark {
-  background: var(--mark);
-  color: var(--inv);
-  width: 40px;
-  height: 40px;
+  background: var(--sun);
+  color: #1c1605;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
-  border-radius: 9px;
+  border-radius: 12px;
+  transform: rotate(-4deg);
 }
 #campus-stores .brandmark svg {
   width: 25px;
@@ -149,9 +174,10 @@ body > main {
 #campus-stores .shift {
   background: var(--memo);
   color: var(--memotxt);
-  padding: 12px 19px;
+  padding: 13px 20px;
   justify-content: space-between;
   border-block: 1px solid var(--line);
+  box-shadow: inset 4px 0 0 var(--sun);
 }
 #campus-stores .shift div {
   max-width: 67ch;
@@ -160,9 +186,9 @@ body > main {
   font-size: 13px;
 }
 #campus-stores .shift button {
-  background: transparent;
+  background: var(--memotxt);
   border-color: var(--memotxt);
-  color: var(--memotxt);
+  color: var(--memo);
   flex-shrink: 0;
 }
 #campus-stores button,
@@ -172,23 +198,33 @@ body > main {
   font: inherit;
   color: var(--ink);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 8px;
   background: var(--paper);
   min-width: 0;
-  padding: 7px 9px;
+  padding: 7px 10px;
 }
 #campus-stores button {
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    background-color 0.12s ease,
+    border-color 0.12s ease,
+    box-shadow 0.12s ease;
 }
 #campus-stores button:hover {
   border-color: var(--sel);
+  transform: translateY(-1px);
+}
+#campus-stores :is(input[type="checkbox"], input[type="radio"]) {
+  accent-color: var(--sel);
 }
 #campus-stores .primary {
   background: var(--sel);
   color: var(--inv);
   border-color: var(--sel);
+  box-shadow: 0 6px 14px -8px var(--sel);
 }
 #campus-stores :is(button, input, textarea, select, summary):focus-visible {
   outline: 3px solid var(--mark);
@@ -216,9 +252,15 @@ body > main {
   background: transparent;
   font-weight: 500;
 }
+#campus-stores nav button:hover {
+  background: var(--paper);
+  border-color: transparent;
+  transform: none;
+}
 #campus-stores nav button[aria-pressed="true"] {
   background: var(--sel);
   color: var(--inv);
+  font-weight: 650;
 }
 #campus-stores nav svg {
   width: 16px;
@@ -257,8 +299,8 @@ body > main {
   background: var(--desk);
   color: var(--quiet);
   font-size: 12px;
-  padding: 3px 7px;
-  border-radius: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
   display: inline-block;
 }
 #campus-stores .good {
@@ -269,7 +311,8 @@ body > main {
   margin-top: 14px;
   padding: 12px 13px;
   background: var(--desk);
-  border-left: 3px solid var(--sel);
+  border-left: 4px solid var(--sun);
+  border-radius: 4px 10px 10px 4px;
 }
 #campus-stores .record p {
   margin-top: 5px;
@@ -357,6 +400,17 @@ body > main {
   color: var(--quiet);
   min-width: 0;
 }
+#campus-stores .steps li:not(:last-child)::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  min-width: 12px;
+  border-radius: 2px;
+  background: var(--line);
+}
+#campus-stores .steps li.done:not(:last-child)::after {
+  background: var(--oktxt);
+}
 #campus-stores .steps i {
   flex: none;
   width: 24px;
@@ -380,6 +434,7 @@ body > main {
   background: var(--sel);
   border-color: var(--sel);
   color: var(--inv);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--sun) 40%, transparent);
 }
 #campus-stores .steps .done i {
   background: var(--ok);
@@ -431,13 +486,16 @@ body > main {
   display: grid;
   gap: 9px;
   margin-bottom: 12px;
-  padding: 14px;
+  padding: 16px;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 14px;
+  background: var(--paper);
+  box-shadow: 0 10px 24px -20px var(--shadow);
 }
 #campus-stores .card.urgent {
   border-color: var(--mark);
-  box-shadow: inset 3px 0 0 var(--mark);
+  background: color-mix(in srgb, var(--badbg) 32%, var(--paper));
+  box-shadow: inset 4px 0 0 var(--mark);
 }
 #campus-stores .card > button {
   justify-self: start;
@@ -574,7 +632,18 @@ body > main {
   gap: 6px;
   padding: 14px;
   background: var(--desk);
-  border-radius: 10px;
+  border-radius: 14px;
+}
+#campus-stores .verdicts .keep {
+  background: var(--ok);
+  color: var(--oktxt);
+}
+#campus-stores .verdicts .change {
+  background: var(--badbg);
+  color: var(--badtxt);
+}
+#campus-stores .verdicts :is(.keep, .change) small {
+  color: inherit;
 }
 #campus-stores .verdicts ul,
 #campus-stores .flow {
@@ -612,7 +681,8 @@ body > main {
   padding: 14px;
   background: var(--memo);
   color: var(--memotxt);
-  border-radius: 10px;
+  border-radius: 14px;
+  box-shadow: inset 4px 0 0 var(--sun);
 }
 #campus-stores .observation small {
   color: inherit;
@@ -633,6 +703,9 @@ body > main {
   #campus-stores .steps li {
     align-items: flex-start;
     gap: 5px;
+  }
+  #campus-stores .steps li::after {
+    display: none;
   }
   #campus-stores .steps i {
     width: 20px;
@@ -671,6 +744,9 @@ body > main {
   #campus-stores .page {
     padding: 14px 12px;
   }
+  #campus-stores .clock {
+    text-align: left;
+  }
   #campus-stores .mast {
     padding: 12px;
   }
@@ -688,6 +764,14 @@ body > main {
   }
   #campus-stores .row {
     gap: 5px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #campus-stores button {
+    transition: none;
+  }
+  #campus-stores button:hover {
+    transform: none;
   }
 }
 @media (pointer: coarse) {
