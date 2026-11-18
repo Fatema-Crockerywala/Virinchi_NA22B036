@@ -68,6 +68,17 @@
       <div id="campus-stores">
         <div class="examstrip">
           <span>Product Engineer practical</span>
+          <div class="views" role="group" aria-label="Choose a view" data-views>
+            <button type="button" data-action="view" data-val="original">
+              Original desk
+            </button>
+            <button type="button" data-action="view" data-val="proposed">
+              Proposed desk
+            </button>
+            <button type="button" data-action="view" data-val="notes">
+              Case notes
+            </button>
+          </div>
           <details>
             <summary>Candidate brief</summary>
             <div class="briefcopy">
@@ -111,10 +122,12 @@
             <small>Desk time</small><strong data-clock></strong>
           </div>
         </header>
+        <ol class="steps" aria-label="Shift timeline" data-steps></ol>
         <aside class="shift">
           <div>
             <b data-shift-title></b>
             <p data-shift></p>
+            <p class="todo" data-todo hidden></p>
           </div>
           <button type="button" data-action="advance"></button>
         </aside>
@@ -126,9 +139,133 @@
             aria-label="Selected register"
           ></section>
         </div>
+        <article class="notes" data-notes hidden>
+          <p class="eyebrow">Case notes</p>
+          <h2>Keep the desk. Put the handover on the slip.</h2>
+          <p class="lede">
+            I would keep this product. Its unit-level records are sound. The
+            weak point is the moment a unit changes hands away from the counter:
+            the register keeps naming the wrong person, and the truth lives in a
+            message the next shift has to find.
+          </p>
+          <div class="verdicts">
+            <section class="verdict keep">
+              <small>Handled well</small>
+              <h3>The issue slip refuses a bad pickup</h3>
+              <p>
+                While issuing the Film Society kit, PR-06 never appears because
+                it is in repair. With AD-12 already out on RQ-214, I tried to
+                add AD-15 and the desk refused: the approved quantity was
+                already on loan. A digital camera was refused too, because the
+                request does not include one.
+              </p>
+            </section>
+            <section class="verdict change">
+              <small>What I would change</small>
+              <h3>Saturday’s slip points at the wrong person</h3>
+              <p>
+                After Friday’s partial return, Leela walks in with an adapter.
+                Slip L-404 still says Kabir, shows no overdue state, and sits
+                beside Tara’s microphone with the same one-click
+                <em>Record return</em> button. Kabir’s message names Leela but
+                not the unit, so I had to join the desk book to the register by
+                hand and nothing asked me to check the tag.
+              </p>
+            </section>
+          </div>
+          <h3>The change: custody travels with the unit</h3>
+          <ol class="flow">
+            <li>
+              <b>Friday 3:45 pm.</b> Choose Kabir. The counter shows why he may
+              collect, the USB-C note, and one prefilled kit form.
+            </li>
+            <li>
+              <b>Friday 7:30 pm.</b> Account for each unit. Marking the adapter
+              <em>Still out</em> requires who has it and when it is promised.
+            </li>
+            <li>
+              <b>Saturday 9:00 am.</b> Choose Leela. Her card names slip L-404,
+              shows it overdue, and closes only when the tag in hand matches.
+            </li>
+          </ol>
+          <h3>Same job, counted</h3>
+          <div class="tablewrap">
+            <table>
+              <caption>
+                Clicks, selections and text entries in a scripted run of the
+                full job
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Moment</th>
+                  <th scope="col">Original</th>
+                  <th scope="col">Proposed</th>
+                  <th scope="col">What changes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Pickup</th>
+                  <td>19</td>
+                  <td>2</td>
+                  <td>Three slips become one reviewed kit form</td>
+                </tr>
+                <tr>
+                  <th scope="row">Partial return</th>
+                  <td>5</td>
+                  <td>7</td>
+                  <td>Deliberately slower: custody becomes required</td>
+                </tr>
+                <tr>
+                  <th scope="row">Morning close</th>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>One extra step buys a tag check</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="verdicts">
+            <section>
+              <h3>What I would keep</h3>
+              <ul>
+                <li>One slip per physical unit</li>
+                <li>The approval and quantity checks</li>
+                <li>The desk book for anything a form cannot hold</li>
+                <li>Inventory and the register as the reference views</li>
+              </ul>
+            </section>
+            <section>
+              <h3>What I left out</h3>
+              <ul>
+                <li>Barcode scanning, which needs hardware at the desk</li>
+                <li>Notifications to borrowers</li>
+                <li>Staff accounts and permissions</li>
+              </ul>
+            </section>
+          </div>
+          <section class="observation">
+            <small>One observation at a real counter</small>
+            <p>
+              Watch the first morning handover after a partial return. When the
+              borrower’s friend arrives, does the incoming staff member reach
+              the right slip and read the physical tag
+              <b>without opening the desk book or asking anyone</b>?
+            </p>
+          </section>
+          <div class="buttons">
+            <button type="button" class="primary" data-action="view" data-val="proposed">
+              Walk the proposed desk
+            </button>
+            <button type="button" data-action="view" data-val="original">
+              Compare with the original
+            </button>
+          </div>
+        </article>
         <div class="statusbar">
-          <span role="status" aria-live="polite" data-status></span
-          ><button type="button" data-action="restart">
+          <span role="status" aria-live="polite" data-status></span>
+          <button type="button" data-action="undo" hidden>Undo</button>
+          <button type="button" data-action="restart">
             Restart sample shift
           </button>
         </div>
